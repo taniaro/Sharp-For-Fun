@@ -1,2 +1,4 @@
 # Sharp-For-Fun
-Some of my projects for study.
+Some of my C# projects for study.
+
+RTL Painter - easy version of Paint.
