@@ -1,0 +1,7 @@
+C:\Users\Tania Rodchyn\source\repos\SparseMatrix\SparseMatrix\bin\Debug\SparseMatrix.exe.config
+C:\Users\Tania Rodchyn\source\repos\SparseMatrix\SparseMatrix\bin\Debug\SparseMatrix.exe
+C:\Users\Tania Rodchyn\source\repos\SparseMatrix\SparseMatrix\bin\Debug\SparseMatrix.pdb
+C:\Users\Tania Rodchyn\source\repos\SparseMatrix\SparseMatrix\obj\Debug\SparseMatrix.csprojResolveAssemblyReference.cache
+C:\Users\Tania Rodchyn\source\repos\SparseMatrix\SparseMatrix\obj\Debug\SparseMatrix.csproj.CoreCompileInputs.cache
+C:\Users\Tania Rodchyn\source\repos\SparseMatrix\SparseMatrix\obj\Debug\SparseMatrix.exe
+C:\Users\Tania Rodchyn\source\repos\SparseMatrix\SparseMatrix\obj\Debug\SparseMatrix.pdb
