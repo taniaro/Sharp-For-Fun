@@ -5,3 +5,5 @@ RTL Painter - easy version of Paint.
 
 NewInterpolation - visual representation of linear interpolation and B-spline interpolation
 
+SparseMatrix - colsole program for operations with sparse matrices
+
