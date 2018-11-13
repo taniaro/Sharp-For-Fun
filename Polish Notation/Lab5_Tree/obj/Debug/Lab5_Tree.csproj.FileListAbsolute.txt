@@ -1,0 +1,7 @@
+C:\Users\Tania Rodchyn\source\repos\Lab5_Tree\Lab5_Tree\bin\Debug\Lab5_Tree.exe.config
+C:\Users\Tania Rodchyn\source\repos\Lab5_Tree\Lab5_Tree\bin\Debug\Lab5_Tree.exe
+C:\Users\Tania Rodchyn\source\repos\Lab5_Tree\Lab5_Tree\bin\Debug\Lab5_Tree.pdb
+C:\Users\Tania Rodchyn\source\repos\Lab5_Tree\Lab5_Tree\obj\Debug\Lab5_Tree.csprojResolveAssemblyReference.cache
+C:\Users\Tania Rodchyn\source\repos\Lab5_Tree\Lab5_Tree\obj\Debug\Lab5_Tree.csproj.CoreCompileInputs.cache
+C:\Users\Tania Rodchyn\source\repos\Lab5_Tree\Lab5_Tree\obj\Debug\Lab5_Tree.exe
+C:\Users\Tania Rodchyn\source\repos\Lab5_Tree\Lab5_Tree\obj\Debug\Lab5_Tree.pdb

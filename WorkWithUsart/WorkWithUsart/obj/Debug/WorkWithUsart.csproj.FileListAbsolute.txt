@@ -1,0 +1,11 @@
+C:\Users\Tania Rodchyn\source\repos\WorkWithUsart\WorkWithUsart\bin\Debug\WorkWithUsart.exe.config
+C:\Users\Tania Rodchyn\source\repos\WorkWithUsart\WorkWithUsart\bin\Debug\WorkWithUsart.exe
+C:\Users\Tania Rodchyn\source\repos\WorkWithUsart\WorkWithUsart\bin\Debug\WorkWithUsart.pdb
+C:\Users\Tania Rodchyn\source\repos\WorkWithUsart\WorkWithUsart\obj\Debug\WorkWithUsart.csprojResolveAssemblyReference.cache
+C:\Users\Tania Rodchyn\source\repos\WorkWithUsart\WorkWithUsart\obj\Debug\WorkWithUsart.Form1.resources
+C:\Users\Tania Rodchyn\source\repos\WorkWithUsart\WorkWithUsart\obj\Debug\WorkWithUsart.Properties.Resources.resources
+C:\Users\Tania Rodchyn\source\repos\WorkWithUsart\WorkWithUsart\obj\Debug\WorkWithUsart.csproj.GenerateResource.Cache
+C:\Users\Tania Rodchyn\source\repos\WorkWithUsart\WorkWithUsart\obj\Debug\WorkWithUsart.csproj.CoreCompileInputs.cache
+C:\Users\Tania Rodchyn\source\repos\WorkWithUsart\WorkWithUsart\obj\Debug\WorkWithUsart.exe
+C:\Users\Tania Rodchyn\source\repos\WorkWithUsart\WorkWithUsart\obj\Debug\WorkWithUsart.pdb
+C:\Users\Tania Rodchyn\source\repos\WorkWithUsart\WorkWithUsart\obj\Debug\WorkWithUsart.Form2.resources

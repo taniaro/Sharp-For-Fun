@@ -1,0 +1,7 @@
+C:\Users\Tania Rodchyn\source\repos\LFSR\LFSR\obj\Debug\LFSR.csprojResolveAssemblyReference.cache
+C:\Users\Tania Rodchyn\source\repos\LFSR\LFSR\obj\Debug\LFSR.csproj.CoreCompileInputs.cache
+C:\Users\Tania Rodchyn\source\repos\LFSR\LFSR\bin\Debug\LFSR.exe.config
+C:\Users\Tania Rodchyn\source\repos\LFSR\LFSR\bin\Debug\LFSR.exe
+C:\Users\Tania Rodchyn\source\repos\LFSR\LFSR\bin\Debug\LFSR.pdb
+C:\Users\Tania Rodchyn\source\repos\LFSR\LFSR\obj\Debug\LFSR.exe
+C:\Users\Tania Rodchyn\source\repos\LFSR\LFSR\obj\Debug\LFSR.pdb
