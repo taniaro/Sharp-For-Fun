@@ -10,16 +10,10 @@ namespace SimpleGA
     {
         static void Main(string[] args)
         {
-            Gene g1 = new Gene();
-            Gene g2 = new Gene();
-            int[] a = { 1, 2, 3, 4 };
-            int[] b = { 1, 2, 3, 4 };
-            g1.Alleles = a;
-            g2.Alleles = b;
-            g1.Fitness = 63;
-            g2.Fitness = 80;
-            if(g1 == g2)
-                Console.WriteLine("Equal genes");
+            int[] coefs = { 1, 2, 3, 4 };
+            EquationSolver equationSolver = new EquationSolver(coefs, 30, 4);
+
+            equationSolver.Solve();
 
         }
     }
