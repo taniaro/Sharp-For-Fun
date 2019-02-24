@@ -6,12 +6,25 @@ using System.Threading.Tasks;
 
 namespace SimpleGA
 {
-    class Gene
+    class Gene : IComparable<Gene>
     {
-        static readonly int ALLELES_COUNT = 4;
+        public static int ALLELES_COUNT { get; set; }
 
         public int[] Alleles { get; set; }
         public int Fitness { get; set; }
+
+        public Gene()
+        {
+            Alleles = new int[ALLELES_COUNT];
+            for (int i = 0; i < ALLELES_COUNT; i++)
+                Alleles[i] = 0;
+        }
+
+        public int CompareTo(Gene other)
+        {
+            //I want to sort in descending order, so I put "-" here
+            return -(this.Fitness.CompareTo(other.Fitness));
+        }
 
         public static bool operator ==(Gene g1, Gene g2)
         {
