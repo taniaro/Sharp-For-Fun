@@ -16,6 +16,8 @@ namespace SimpleGA
         Gene[] population;
         Random random;
 
+        public Gene this[int i] { get => population[i]; }
+
         public EquationSolver(int[] Coefficients, int EquationResult, int COEFF_COUNT)
         {
             this.Coefficients = Coefficients;
@@ -31,6 +33,8 @@ namespace SimpleGA
         }
 
         /** This method fully solves the equation**/
+
+        //there is a bug (returns "no answers" smt)...need to fix later
         public int Solve()
         {
             int fitness = -100;
@@ -69,9 +73,10 @@ namespace SimpleGA
 
 
         /** 
-         * Calculates fitness function for every gene in population 
+         * Calculates fitness function (g.Fitness) for gene 
          * as a difference between absolute equation result 
-         * and gene's equation result **/
+         * and gene's equation result
+         * In the best case it's value must be 0 **/
         void Fitness(ref Gene g)
         {
             int temp = 0;
@@ -81,7 +86,7 @@ namespace SimpleGA
         }
 
         /** 
-         * Calculates average fitness meaning for population **/
+         * Calculates average fitness value for population **/
         void AverageFitnesses()
         {
             int avg = 0;
@@ -102,7 +107,11 @@ namespace SimpleGA
             }
         }
 
+        /**
+         * Creates new population based on kids of parents,
+         * whose fitness function value is less then average**/
 
+        //!!! need to fix: prohibit the negative value's for alleles
         void CreateNewPopulation(int iteration)
         {
             int parent1, parent2;
@@ -121,14 +130,16 @@ namespace SimpleGA
                 parent1 = random.Next() % cnt;
                 parent2 = random.Next() % cnt;
 
-                kid = Breed(parent1, parent2); //not implemented
+                kid = Breed(parent1, parent2); 
                 if (iteration >= 5)
-                    Mutation(kid); //not implemented
+                    Mutation(kid);
                 Fitness(ref kid);
-                AddToPopulation(kid); //not implemented
+                AddToPopulation(kid); 
             }
 
             //True if population has free places to insert new kids
+            //Free place's marks are -1 fitness value and -1 at every Alleles' position
+            //(we just check fir's Alleles' position)
             bool NotFull()
             {
                 for (int i = 0; i < MAXPOP; i++)
@@ -139,19 +150,56 @@ namespace SimpleGA
             }
         }
 
+        /**
+         * Creates kid using crossover **/
+
+        //!!! need to fix: prohibit the negative value's for alleles
+
         Gene Breed(int parent1, int parent2)
         {
-            return new Gene();
+            Gene kid = population[parent1];
+            int crossover = random.Next() % COEFF_COUNT + 1;
+            int initial_place = crossover, fin = 3;
+
+            for (int i = initial_place; i < fin; i++)
+                kid.Alleles[i] = population[parent2].Alleles[i];
+
+            return kid;
         }
 
+        /**
+         * Simple mutation(+1 or -1 from allele's value) **/
+
+        //!!! need to fix: prohibit the negative value's for alleles
         void Mutation(Gene kid)
         {
+            Fitness(ref kid);
+            int f = kid.Fitness;
 
+            int coef = 0;
+            coef = random.Next() % COEFF_COUNT;
+
+            if (f < 0)
+                kid.Alleles[coef]++;
+            else
+                kid.Alleles[coef]--;
         }
 
+        /**
+         * Adds new kids to an existing population **/
         void AddToPopulation(Gene kid)
         {
+            for (int i = 0; i < MAXPOP; i++)
+            {
+                if (population[i].Fitness == -1 && population[i].Alleles[0] == -1)
+                {
+                    for (int j = 0; j < 4; j++)
+                        population[i].Alleles[j] = kid.Alleles[j];
+                    population[i].Fitness = kid.Fitness;
+                    break;
+                }
 
+            }
         }
 
     }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SimpleGA
 {
-    class Gene : IComparable<Gene>
+    public class Gene : IComparable<Gene>
     {
         public static int ALLELES_COUNT { get; set; }
 
