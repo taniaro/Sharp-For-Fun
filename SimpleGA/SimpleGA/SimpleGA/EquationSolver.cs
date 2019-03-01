@@ -10,6 +10,7 @@ namespace SimpleGA
     {
         const int MAXPOP = 25;
         int COEFF_COUNT;
+        int ALLOW_MUTATION = 3;
 
         public int[] Coefficients { get; }
         public int EquationResult { get; }
@@ -111,7 +112,6 @@ namespace SimpleGA
          * Creates new population based on kids of parents,
          * whose fitness function value is less then average**/
 
-        //!!! need to fix: prohibit the negative value's for alleles
         void CreateNewPopulation(int iteration)
         {
             int parent1, parent2;
@@ -131,7 +131,7 @@ namespace SimpleGA
                 parent2 = random.Next() % cnt;
 
                 kid = Breed(parent1, parent2); 
-                if (iteration >= 5)
+                if (iteration >= ALLOW_MUTATION)
                     Mutation(kid);
                 Fitness(ref kid);
                 AddToPopulation(kid); 
@@ -153,13 +153,11 @@ namespace SimpleGA
         /**
          * Creates kid using crossover **/
 
-        //!!! need to fix: prohibit the negative value's for alleles
-
         Gene Breed(int parent1, int parent2)
         {
             Gene kid = population[parent1];
             int crossover = random.Next() % COEFF_COUNT + 1;
-            int initial_place = crossover, fin = 3;
+            int initial_place = crossover, fin = COEFF_COUNT - 1;
 
             for (int i = initial_place; i < fin; i++)
                 kid.Alleles[i] = population[parent2].Alleles[i];
@@ -170,7 +168,6 @@ namespace SimpleGA
         /**
          * Simple mutation(+1 or -1 from allele's value) **/
 
-        //!!! need to fix: prohibit the negative value's for alleles
         void Mutation(Gene kid)
         {
             Fitness(ref kid);
@@ -179,7 +176,7 @@ namespace SimpleGA
             int coef = 0;
             coef = random.Next() % COEFF_COUNT;
 
-            if (f < 0)
+            if (f <= 0)
                 kid.Alleles[coef]++;
             else
                 kid.Alleles[coef]--;
@@ -193,8 +190,9 @@ namespace SimpleGA
             {
                 if (population[i].Fitness == -1 && population[i].Alleles[0] == -1)
                 {
-                    for (int j = 0; j < 4; j++)
+                    for (int j = 0; j < COEFF_COUNT; j++)
                         population[i].Alleles[j] = kid.Alleles[j];
+
                     population[i].Fitness = kid.Fitness;
                     break;
                 }
