@@ -60,7 +60,7 @@ namespace BankLib
                 $"You received ${sum} on account {Id}, balance: ${Sum}", sum));   
         }
 
-        //withdrawin money
+        //withdrawing money
         public virtual decimal Withdraw(decimal sum)
         {
             decimal res = 0;
@@ -80,7 +80,7 @@ namespace BankLib
             }
         }
 
-        //opening accounr
+        //opening account
         protected internal virtual void Open()
         {
             OnOpen(new AccountEventArgs(
