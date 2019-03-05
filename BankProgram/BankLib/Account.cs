@@ -84,7 +84,7 @@ namespace BankLib
         protected internal virtual void Open()
         {
             OnOpen(new AccountEventArgs(
-                $"New deposit account {Id} opened. Current sum: ${Sum}", Sum));
+                $"New account {Id} opened. Current sum: ${Sum}", Sum));
         }
 
         //closing account
