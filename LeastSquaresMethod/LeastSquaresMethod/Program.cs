@@ -10,8 +10,28 @@ namespace LeastSquaresMethod
     class Program
     {
         static string filepath = "info.txt";
-        public static int K;
+        //максимальна степінь полінома
+        const int MAXPOW = 10;
 
+        //степінь полінома
+        static int pow;
+        public static int P 
+        {
+            get => pow; 
+            set
+            {
+                if(value > MAXPOW)
+                {
+                    System.Console.WriteLine($"Степінь не може перевищувати {MAXPOW}");
+                }
+                else
+                {
+                    pow = value;
+                }
+            } 
+        }
+
+        //counts how much lines are in file
         static int FileSize()
         {
             int size = 0;
@@ -38,8 +58,8 @@ namespace LeastSquaresMethod
         {
             size = FileSize();
 
-            x = new double[size + 1];
-            y = new double[size + 1];
+            x = new double[size];
+            y = new double[size];
 
             using (StreamReader sr = new StreamReader(filepath, System.Text.Encoding.Default))
             {
@@ -60,24 +80,34 @@ namespace LeastSquaresMethod
 
         static void Main(string[] args)
         {
-
+            //масив коефіцієнтів, масив вільних членів системи, масиви для даних
             double[] result, freeParts, x, y;
-            double[,] sums;
 
+            //
+            double[,] sums;
             int N;
-            double M, s;
+            double M;
 
             ReadFromFile(out x, out y, out N);
+            Console.WriteLine("Отриманi данi: \nX:");
+            foreach (var i in x)
+                Console.Write(i + ", ");
+            Console.WriteLine("\nY:");
+            foreach (var i in y)
+                Console.Write(i + ", ");
+            Console.WriteLine("\n");
 
-            K = 2;
+            Console.WriteLine("Введiть степiнь полiнома, яким апроксимуємо функцiю:");
+            P = Convert.ToInt32(Console.ReadLine());
 
-            result = new double[K + 1];
-            freeParts = new double[K + 1];
-            sums = new double[K + 1, K + 1];
+            result = new double[P + 1];
+            freeParts = new double[P + 1];
+            sums = new double[P + 1, P + 1];
 
-            for (int i = 0; i < K + 1; i++)
+            //шукаєм суми в системі рівнянь
+            for (int i = 0; i < P + 1; i++)
             {
-                for (int j = 0; j < K + 1; j++)
+                for (int j = 0; j < P + 1; j++)
                 {
                     sums[i,j] = 0;
                     for (int k = 0; k < N; k++)
@@ -85,37 +115,42 @@ namespace LeastSquaresMethod
                 }
             }
 
-            for (int i = 0; i < K + 1; i++)
+            //заповнюєм рядок вільних членів для системи рівнянь
+            for (int i = 0; i < P + 1; i++)
             {
                 freeParts[i] = 0;
                 for (int k = 0; k < N; k++)
                     freeParts[i] += Math.Pow(x[k], i) * y[k];
             }
 
-
-            for (int k = 0; k < K + 1; k++)
+            //гарне пояснення тут: https://prog-cpp.ru/gauss/ 
+            //розв'язок системи рівнянь методом Гауса
+            for (int k = 0; k < P + 1; k++)
             {
-                for (int i = k + 1; i < K + 1; i++)
+                for (int i = k + 1; i < P + 1; i++)
                 {
+                    //приводимо матрицю до трикутного вигляду, нормуєм рівняння
                     M = sums[i,k] / sums[k,k];
-                    for (int j = k; j < K + 1; j++)
+                    //віднімаєм отримані рядки від інших рядків, заміняєм відповідні коеф.
+                    for (int j = k; j < P + 1; j++)
                         sums[i,j] -= M * sums[k,j];
                     freeParts[i] -= M * freeParts[k];
                 }
             }
 
-
-            for (int i = K; i >= 0; i--)
+            //зворотня підстановка
+            for (int i = P; i >= 0; i--)
             {
-                s = 0;
-                for (int j = i; j < K + 1; j++)
+                double s = 0;
+                for (int j = i; j < P + 1; j++)
                     s += sums[i,j] * result[j];
                 result[i] = (freeParts[i] - s) / sums[i,i];
             }
 
-            for(int i = 0; i < K + 1; i++)
+            //вивід результату з заокругленням
+            for(int i = 0; i < P + 1; i++)
             {
-                double tmp = result[i];//(result[i] > 0 ) ? Math.Round(result[i]) : Math.Ceiling(result[i]);
+                double tmp = (result[i] > 0 ) ? Math.Round(result[i]) : Math.Ceiling(result[i]);
                 Console.WriteLine($"X({i}) = {tmp}");
             }
 
