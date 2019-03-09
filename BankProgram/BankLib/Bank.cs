@@ -19,49 +19,101 @@ namespace BankLib
         }
 
         //account's opening
-        public void Open(AccountType accountType, decimal sum,
+        //result: addidtion of a new account to the list of existing accounts
+        public void Open(AccountType accountType, decimal sum, float percentage,
             AccountStateHandler openStateHandler, AccountStateHandler closeStateHandler,
             AccountEventArgs receiveStateHandler, AccountEventArgs WithdrawStateHandler,
-            AccountEventArgs percentageStateHandler)
+            AccountEventArgs percentageStateHandler, int period = 0)
         {
+            T newAccount = default(T);
 
+            switch(accountType) 
+            {
+                case AccountType.Demand:
+                    newAccount = new DemandAccount(sum, percentage) as T;
+                    break;
+                case AccountType.Deposit:
+                    newAccount = new DepositAccount(sum, percentage, period);
+                    break;
+                default: 
+                    throw new Exception("Error while creating account");
+            }
+
+            newAccount.Opened += openStateHandler;
+            newAccount.Closed += closeStateHandler;
+            newAccount.Received += receiveStateHandler;
+            newAccount.Withdrawed += WithdrawStateHandler;
+
+            accounts.Add(newAccount);
         }
 
         //account's closing
         public void Close(int id)
         {
+            int index;
+            T account = FindAccount(id, out index);
+            if(account == null)
+                throw new Exception("Account not found");
 
+            account.Close();
+            accounts.RemoveAt(index);
         }
 
         //receiving money
         public void Receive(decimal sum, int id)
         {
-
+            T account = FindAccount(id);
+            if(account == null)
+                throw new Exception("Account not found");
+            account.Receive(sum);
         }
 
         //withdrawing money
         public void Withdraw(decimal sum, int id)
         {
-
+            T account = FindAccount(id);
+            if(account == null)
+                throw new Exception("Account not found");
+            account.Withdraw(sum);
         }
 
         //percentage calculating
         public void CalculatePercentage()
         {
-
+            for(int i=0; i < accounts.Count; i++)
+            {
+                T account = accounts[i];
+                account.DaysIncrement();
+                account.CalculatePercentage();
+            }
         }
 
-        //finds account by id
+        //finds account by it's id
         public T FindAccount(int id)
         {
-            return default(T);
+            T result = default(T);
+            for(int i=0; i < accounts.Count; i++)
+            {
+                if(accounts[i].Id = id)
+                    result = accounts[i];
+            }
+            return result;
         }
 
-        //finds accound by id and it's index
+        //finds account by it's id and index
         public T FindAccount(int id, out int index)
         {
-            index = 0;
-            return default(T);
+            index = -1;
+            T result = default(T);
+            for(int i=0; i < accounts.Count; i++)
+            {
+                if(accounts[i].Id = id)
+                {
+                    result = accounts[i];
+                    index = i;
+                }
+            }
+            return result;
         }
 
 
