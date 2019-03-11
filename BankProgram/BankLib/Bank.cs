@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+
 namespace BankLib
 {
     public enum AccountType
@@ -22,7 +25,7 @@ namespace BankLib
         //result: addidtion of a new account to the list of existing accounts
         public void Open(AccountType accountType, decimal sum, float percentage,
             AccountStateHandler openStateHandler, AccountStateHandler closeStateHandler,
-            AccountEventArgs receiveStateHandler, AccountEventArgs WithdrawStateHandler,
+            AccountStateHandler receiveStateHandler, AccountStateHandler WithdrawStateHandler,
             AccountEventArgs percentageStateHandler, int period = 0)
         {
             T newAccount = default(T);
@@ -33,7 +36,7 @@ namespace BankLib
                     newAccount = new DemandAccount(sum, percentage) as T;
                     break;
                 case AccountType.Deposit:
-                    newAccount = new DepositAccount(sum, percentage, period);
+                    newAccount = new DepositAccount(sum, percentage, period) as T;
                     break;
                 default: 
                     throw new Exception("Error while creating account");
@@ -94,7 +97,7 @@ namespace BankLib
             T result = default(T);
             for(int i=0; i < accounts.Count; i++)
             {
-                if(accounts[i].Id = id)
+                if(accounts[i].Id == id)
                     result = accounts[i];
             }
             return result;
@@ -107,7 +110,7 @@ namespace BankLib
             T result = default(T);
             for(int i=0; i < accounts.Count; i++)
             {
-                if(accounts[i].Id = id)
+                if(accounts[i].Id == id)
                 {
                     result = accounts[i];
                     index = i;

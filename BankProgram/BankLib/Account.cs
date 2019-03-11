@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 namespace BankLib
 {
     public abstract class Account
@@ -28,7 +30,8 @@ namespace BankLib
         {
             this.sum = sum;
             this.percentage = percentage;
-            id = ++counter.GetHashCode();
+            ++counter;
+            id = counter.GetHashCode();
         }
 
         public decimal Sum { get => sum; private set => sum = value; }
@@ -78,6 +81,7 @@ namespace BankLib
                     $"You don't have enough money on your account {Id} for operation, " +
                         $"balance: ${Sum}", 0));
             }
+            return res;
         }
 
         //opening account
@@ -91,15 +95,15 @@ namespace BankLib
         protected internal virtual void Close()
         {
             OnClose(new AccountEventArgs(
-                $"Account {Id} is closed. Sum: {Sum}", Sum))
+                $"Account {Id} is closed. Sum: {Sum}", Sum));
         }
 
         protected internal void DaysIncrement() => days++;
 
         //calculating of account's interest
-        protected internal void CalculatePercentage()
+        protected internal virtual void CalculatePercentage()
         {
-            decimal inc = Sum * Percentage / 100;
+            decimal inc = Sum * (decimal)Percentage / 100;
             Sum = Sum + inc;
             OnPercentageCalculated(new AccountEventArgs(
                 $"Your interest of account {Id} is accured, balance: ${Sum}", inc));

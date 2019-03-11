@@ -8,7 +8,7 @@ namespace BankLib
         public DepositAccount(decimal sum, float percentage, int period) 
             : base(sum, percentage) => PERIOD = period;
 
-        protected internal override Open()
+        protected internal override void Open()
         {
             base.OnOpen(new AccountEventArgs(
                 $"New account {Id} opened. Current sum: ${Sum}", Sum));
@@ -22,7 +22,7 @@ namespace BankLib
             }
             else
             {
-                base.OnReceived(new AccountEventArgs(
+                base.OnReceive(new AccountEventArgs(
                     $"You can put money on your account {Id} only after {PERIOD}-days period." + 
                         $"Balance: {Sum}", 0));
             }
@@ -36,10 +36,12 @@ namespace BankLib
             }
             else
             {
-                base.OnWithdrawed(
+                base.OnWithdraw(new AccountEventArgs(
                     $"You can withdraw money from account {Id} only after {PERIOD}-days period." +
-                        $" Balance: {Sum}", 0);
+                        $" Balance: {Sum}", 0));
             }
+
+            return sum;
         }
 
         protected internal override void CalculatePercentage()
