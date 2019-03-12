@@ -25,8 +25,8 @@ namespace BankLib
         //result: addidtion of a new account to the list of existing accounts
         public void Open(AccountType accountType, decimal sum, float percentage,
             AccountStateHandler openStateHandler, AccountStateHandler closeStateHandler,
-            AccountStateHandler receiveStateHandler, AccountStateHandler WithdrawStateHandler,
-            AccountEventArgs percentageStateHandler, int period = 0)
+            AccountStateHandler receiveStateHandler, AccountStateHandler withdrawStateHandler,
+            AccountStateHandler percentageStateHandler, int period = 0)
         {
             T newAccount = default(T);
 
@@ -45,7 +45,7 @@ namespace BankLib
             newAccount.Opened += openStateHandler;
             newAccount.Closed += closeStateHandler;
             newAccount.Received += receiveStateHandler;
-            newAccount.Withdrawed += WithdrawStateHandler;
+            newAccount.Withdrawed += withdrawStateHandler;
 
             accounts.Add(newAccount);
         }

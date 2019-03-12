@@ -85,14 +85,16 @@ namespace BankLib
         }
 
         //opening account
-        protected internal virtual void Open()
+        //change to protected internal
+        public virtual void Open()
         {
             OnOpen(new AccountEventArgs(
                 $"New account {Id} opened. Current sum: ${Sum}", Sum));
         }
 
         //closing account
-        protected internal virtual void Close()
+        //change to protected internal
+        public virtual void Close()
         {
             OnClose(new AccountEventArgs(
                 $"Account {Id} is closed. Sum: {Sum}", Sum));

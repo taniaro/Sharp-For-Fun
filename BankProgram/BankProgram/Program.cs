@@ -12,7 +12,7 @@ namespace BankProgram
         static void Main(string[] args)
         {
             Bank<Account> myBank = new Bank<Account>("Beta Bank");
-            
+            ConsoleWork.OpenAccount(myBank);
             
         }
     }

@@ -8,7 +8,8 @@ namespace BankLib
         public DepositAccount(decimal sum, float percentage, int period) 
             : base(sum, percentage) => PERIOD = period;
 
-        protected internal override void Open()
+        //change to protected internal
+        public override void Open()
         {
             base.OnOpen(new AccountEventArgs(
                 $"New account {Id} opened. Current sum: ${Sum}", Sum));
