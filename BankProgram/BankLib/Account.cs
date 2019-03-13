@@ -19,8 +19,12 @@ namespace BankLib
         //event that occurs when calculating the interest of the deposit
         protected internal event AccountStateHandler PercentageCalculated;
 
+        //event that occurs when we want to see information about account
+        protected internal event AccountStateHandler InfoShowing;
+
         protected int id; //account's id
         static int counter; //for id calculation
+        private bool isDeposit;
 
         protected decimal sum; //sum on account
         protected float percentage;
@@ -30,6 +34,8 @@ namespace BankLib
         {
             this.sum = sum;
             this.percentage = percentage;
+            if (percentage != 0)
+                isDeposit = true;
             ++counter;
             id = counter.GetHashCode();
         }
@@ -37,6 +43,7 @@ namespace BankLib
         public decimal Sum { get => sum; private set => sum = value; }
         public float Percentage { get => percentage; private set => percentage = value; }
         public int Id { get => id; }
+
 
         // if (handler != null && e!=null)
         //event calling
@@ -53,6 +60,7 @@ namespace BankLib
         protected virtual void OnWithdraw(AccountEventArgs e) => CallEvent(e, Withdrawed);
         protected virtual void OnPercentageCalculated(AccountEventArgs e) 
             => CallEvent(e, PercentageCalculated);
+        protected virtual void OnInfoShowed(AccountEventArgs e) => CallEvent(e, InfoShowing);
 
         //receiving money
         public virtual void Receive(decimal sum)
@@ -100,15 +108,25 @@ namespace BankLib
                 $"Account {Id} is closed. Sum: {Sum}", Sum));
         }
 
+        //show info about account
+        public virtual void ShowInfo()
+        {
+            OnInfoShowed(new AccountEventArgs(
+                $"Id: {Id}, Balance: {Sum}", 0));
+        }
+
         protected internal void DaysIncrement() => days++;
 
         //calculating of account's interest
         protected internal virtual void CalculatePercentage()
         {
-            decimal inc = Sum * (decimal)Percentage / 100;
-            Sum = Sum + inc;
-            OnPercentageCalculated(new AccountEventArgs(
-                $"Your interest of account {Id} is accured, balance: ${Sum}", inc));
+            if (isDeposit)
+            {
+                decimal inc = Sum * (decimal)Percentage / 100;
+                Sum = Sum + inc;
+                OnPercentageCalculated(new AccountEventArgs(
+                    $"Your interest of account {Id} is accured, balance: ${Sum}", inc));
+            }
         }     
     }
 }

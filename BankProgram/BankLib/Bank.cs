@@ -26,7 +26,8 @@ namespace BankLib
         public void Open(AccountType accountType, decimal sum, float percentage,
             AccountStateHandler openStateHandler, AccountStateHandler closeStateHandler,
             AccountStateHandler receiveStateHandler, AccountStateHandler withdrawStateHandler,
-            AccountStateHandler percentageStateHandler, int period = 0)
+            AccountStateHandler percentageStateHandler, AccountStateHandler showInfoStateHandler, 
+            int period = 0)
         {
             T newAccount = default(T);
 
@@ -46,6 +47,7 @@ namespace BankLib
             newAccount.Closed += closeStateHandler;
             newAccount.Received += receiveStateHandler;
             newAccount.Withdrawed += withdrawStateHandler;
+            newAccount.InfoShowing += showInfoStateHandler;
 
             accounts.Add(newAccount);
         }
@@ -78,6 +80,14 @@ namespace BankLib
             if(account == null)
                 throw new Exception("Account not found");
             account.Withdraw(sum);
+        }
+
+        public void Show(int id)
+        {
+            T account = FindAccount(id);
+            if (account == null)
+                throw new Exception("Account not found");
+            account.ShowInfo();
         }
 
         //percentage calculating

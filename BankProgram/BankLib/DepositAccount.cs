@@ -52,5 +52,12 @@ namespace BankLib
                 base.CalculatePercentage();
             }
         }
+
+        public override void ShowInfo()
+        {
+            base.OnInfoShowed(new AccountEventArgs(
+                $"Id: {Id}, Balance: {Sum}, " +
+                $"Interest: {Percentage}, period: {PERIOD}", 0));
+        }
     }
 }
