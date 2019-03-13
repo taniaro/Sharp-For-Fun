@@ -82,6 +82,7 @@ namespace BankLib
             account.Withdraw(sum);
         }
 
+        //information about account
         public void Show(int id)
         {
             T account = FindAccount(id);

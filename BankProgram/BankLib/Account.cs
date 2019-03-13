@@ -24,7 +24,7 @@ namespace BankLib
 
         protected int id; //account's id
         static int counter; //for id calculation
-        private bool isDeposit;
+        private bool isDeposit; //true if we can calculate interest for account
 
         protected decimal sum; //sum on account
         protected float percentage;
@@ -93,16 +93,14 @@ namespace BankLib
         }
 
         //opening account
-        //change to protected internal
-        public virtual void Open()
+        protected internal virtual void Open()
         {
             OnOpen(new AccountEventArgs(
                 $"New account {Id} opened. Current sum: ${Sum}", Sum));
         }
 
         //closing account
-        //change to protected internal
-        public virtual void Close()
+        protected internal virtual void Close()
         {
             OnClose(new AccountEventArgs(
                 $"Account {Id} is closed. Sum: {Sum}", Sum));

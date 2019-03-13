@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace BankProgram
 {
+    //class for work with console interface
     static class ConsoleWork
     {
         public static void OpenAccount(Bank<Account> bank)
@@ -79,8 +80,8 @@ namespace BankProgram
             bank.Show(id);
             
         }
-
-
+   
+        //console actually needs only one handler
         private static void WorkWithAccountHandler(object sender, AccountEventArgs e)
         {
             Console.WriteLine(e.Message);
