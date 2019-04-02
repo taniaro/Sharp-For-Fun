@@ -1,0 +1,19 @@
+﻿@model IEnumerable<WebApplication1.Models.OfferList>
+@{
+    Layout = "~/Views/Admin/AdminPage.cshtml";
+}
+<h1>List of Products</h1>
+<p>
+    
+    @Html.Action("Count", "Home")
+
+
+    @foreach(var Item in Model)
+    {
+        
+
+       <br /> @Item.NameOfOffer <br />
+        @Item.Date<br />
+    }
+  
+</p>

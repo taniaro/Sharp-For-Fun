@@ -1,0 +1,88 @@
+﻿@model IEnumerable<WebApplication1.Models.RegistrationList>
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/Content/CSS/style.css?v=@DateTime.Now.Millisecond" >
+    <title>APPStore Registration</title>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar navbar-dark bg-darkblue fixed-top">
+                <a class="navbar-brand " href="#">
+                    <img src="/Content/images/5_White_logo_on_black_104x73.png" class="d-inline-block align-top " alt="logo">
+                </a>
+                <h1 class="registration__title">Registration</h1>
+            </nav>
+        </div>
+    </header>
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 registration__text">
+                    <h1 style="color: darkblue;">APP Store</h1>
+                    <p>	Developing professional music and audio software as part of scientific research in digital signal processing. Designing algorithms for real-time simulation of analog electronic circuits.</p>
+                    
+
+                </div>
+                <div class="col-lg-5 registration__field " style="padding-top: -100px;">
+                    <h3></h3>Sign Up</h3>
+                    <form action="/Home/Form" method="post" class="form">
+                        <input type="text" name="UserName" placeholder="Login"><br>
+                        <input type="password" name="Password" placeholder="Password"><br>
+                        <input type="text" name="Email" placeholder="Email"><br>
+                        <input class="registration__button" style=" margin-bottom: 80px;" type="submit" value="Sign In">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 registration__field">
+                    <h3>Log In</h3>
+
+                    <form action="/Home/FormLogin" method="post" class="form">
+                        <input type="text" name="UserName" placeholder="Login or Email"><br>
+                        <input type="password" name="Password" placeholder="Password"><br>
+                        <input class="registration__button" type="submit" value="Log In">
+                        
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 support">
+                    <h1>Support</h1>
+                    GENERAL INFORMATION
+                    If you have any trouble with APPStore products, please send us email to: support@appstore.com and we will try to help you. If you have any thoughts or questions about products of APPStore, please email to: info@appstore.com Support-related issues from customers are handled as soon as possible.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <p class="registration__footer">Copyright © APPStore 2011 - 2018</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
